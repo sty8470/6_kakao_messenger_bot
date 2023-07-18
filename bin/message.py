@@ -24,7 +24,7 @@ class Message(QThread):
         self.person_icon_2 = self.fetch_icon_path('person_icon_2.png')
         self.send_file_icon = self.fetch_icon_path('send_file_icon.png')
         self.num_pic_files = None
-        self.file_ext = None
+        self.file_ext = "jpg"
         
     def fetch_icon_path(self, icon_name):
         '''상위 img 폴더 내의 특정 img의 상대경로 반환하기'''
@@ -55,6 +55,7 @@ class Message(QThread):
     
     def send_text_to_individuals(self):
         '''문자를 개인들에게 전송하는 함수'''
+        search_icon_location = pyautogui.locateCenterOnScreen(self.search_icon, grayscale=True, confidence=0.7)
         try:
             # search_icon 밑에 있는 내 프로필 사진을 클릭 후 관련 문자 정보를 들고온다.
             search_icon_location = pyautogui.locateCenterOnScreen(self.search_icon, grayscale=True, confidence=0.7)
@@ -205,8 +206,9 @@ class Message(QThread):
             # 내 프로필 사진을 클릭한다.
             search_icon_location = pyautogui.locateCenterOnScreen(self.search_icon, grayscale=True, confidence=0.7)
             search_icon_x_coordinate, search_icon_y_coordinate = search_icon_location
+            time.sleep(1)
             pyautogui.click(search_icon_x_coordinate, search_icon_y_coordinate + 30)
-            self.digitize_pic_filename()
+            # self.digitize_pic_filename()
             time.sleep(0.5)
         except:
             print("search icon 밑에 프로필 창을 찾는 것을 실패했습니다!")
@@ -217,19 +219,20 @@ class Message(QThread):
                 random_img_idx = random.randrange(1,self.num_pic_files)
                 random_img_ext = self.file_ext
                 pyautogui.keyDown('enter')
-                time.sleep(0.5)
+                time.sleep(2)
                 send_file_link_location = pyautogui.locateCenterOnScreen(self.send_file_icon, confidence=0.67)
                 x,y = send_file_link_location
                 pyautogui.click(x,y)
                 # My Chatroom에 복사 해 둔다
+                random_img_idx = 24
                 img_to_send = self.fetch_img_path(random_img_idx, random_img_ext)
                 pyperclip.copy(img_to_send)
                 pyautogui.hotkey('ctrl','v')
-                time.sleep(0.5)
+                time.sleep(1)
                 pyautogui.keyDown('enter')
-                time.sleep(0.5)
+                time.sleep(1)
                 pyautogui.keyDown('enter')
-                time.sleep(0.5)
+                time.sleep(1)
                 print("지금 선택된 사진은 {}번째 사진입니다".format(str(random_img_idx)))
                 self.process_signal.emit(f"지금 선택된 사진은 {random_img_idx}번째 사진입니다!")
             except:
@@ -240,7 +243,7 @@ class Message(QThread):
                     # send_filed의 동북쪽 방향 위에 있는 My Chatroom에 저장된 사진을 들고 온다
                     send_file_link_location = pyautogui.locateCenterOnScreen(self.send_file_icon, confidence=0.67)
                     x,y = send_file_link_location
-                    pyautogui.click(x+150,y-150)
+                    pyautogui.click(x+200,y-250)
                     time.sleep(0.5)
                     pyautogui.hotkey('ctrl', 'c')
                     time.sleep(0.5)
@@ -255,9 +258,9 @@ class Message(QThread):
                         search_icon_location = pyautogui.locateCenterOnScreen(self.search_icon, grayscale=True, confidence=0.7)
                         search_icon_x_coordinate, search_icon_y_coordinate = search_icon_location
                         pyautogui.click(search_icon_x_coordinate, search_icon_y_coordinate)
-                        time.sleep(0.5)
+                        time.sleep(1)
                         pyautogui.write('+')
-                        time.sleep(0.5)
+                        time.sleep(1)
                         for i in range(1,int(self.num_friends)+1):
                             time.sleep(0.5)
                             pyautogui.keyDown('enter')
@@ -298,7 +301,7 @@ class Message(QThread):
             search_icon_location = pyautogui.locateCenterOnScreen(self.search_icon, grayscale=True, confidence=0.7)
             search_icon_x_coordinate, search_icon_y_coordinate = search_icon_location
             pyautogui.click(search_icon_x_coordinate, search_icon_y_coordinate + 30)
-            self.digitize_pic_filename()
+            # self.digitize_pic_filename()
             time.sleep(0.5)
         except:
             print("search icon 밑에 프로필 창을 찾는 것을 실패했습니다!")
@@ -314,6 +317,7 @@ class Message(QThread):
                 x,y = send_file_link_location
                 pyautogui.click(x,y)
                 # My Chatroom에 복사 해 둔다
+                random_img_idx = 24
                 img_to_send = self.fetch_img_path(random_img_idx, random_img_ext)
                 pyperclip.copy(img_to_send)
                 pyautogui.hotkey('ctrl','v')
