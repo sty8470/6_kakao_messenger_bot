@@ -224,7 +224,7 @@ class Message(QThread):
                 x,y = send_file_link_location
                 pyautogui.click(x,y)
                 # My Chatroom에 복사 해 둔다
-                random_img_idx = 24
+                random_img_idx = 21
                 img_to_send = self.fetch_img_path(random_img_idx, random_img_ext)
                 pyperclip.copy(img_to_send)
                 pyautogui.hotkey('ctrl','v')
@@ -243,7 +243,7 @@ class Message(QThread):
                     # send_filed의 동북쪽 방향 위에 있는 My Chatroom에 저장된 사진을 들고 온다
                     send_file_link_location = pyautogui.locateCenterOnScreen(self.send_file_icon, confidence=0.67)
                     x,y = send_file_link_location
-                    pyautogui.click(x+200,y-250)
+                    pyautogui.click(x+200,y-350)
                     time.sleep(0.5)
                     pyautogui.hotkey('ctrl', 'c')
                     time.sleep(0.5)
@@ -317,7 +317,7 @@ class Message(QThread):
                 x,y = send_file_link_location
                 pyautogui.click(x,y)
                 # My Chatroom에 복사 해 둔다
-                random_img_idx = 24
+                random_img_idx = 21
                 img_to_send = self.fetch_img_path(random_img_idx, random_img_ext)
                 pyperclip.copy(img_to_send)
                 pyautogui.hotkey('ctrl','v')
@@ -336,7 +336,7 @@ class Message(QThread):
                     # send_filed의 동북쪽 방향 위에 있는 My Chatroom에 저장된 사진을 들고 온다
                     send_file_link_location = pyautogui.locateCenterOnScreen(self.send_file_icon, confidence=0.67)
                     x,y = send_file_link_location
-                    pyautogui.click(x+150,y-150)
+                    pyautogui.click(x+200,y-350)
                     time.sleep(0.5)
                     pyautogui.hotkey('ctrl', 'c')
                     time.sleep(0.5)

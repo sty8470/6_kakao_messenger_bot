@@ -1,4 +1,4 @@
 문자
-단체
-120
-Howl_village, Ain_village, Jeju_trip, Metro, Yongmun_girls, Greenville_sisters, USA Yongmun, Chinese Worshipper, 2022, Clema
+개인과 단체
+121
+FGBD, Howl_village, Ain_village, Jeju_trip, Metro, Yongmun_girls, Greenville_sisters, USA Yongmun, Chinese Worshipper, 2022, Clema, Jeongja
